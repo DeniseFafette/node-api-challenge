@@ -12,3 +12,16 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+// implement API
+
+const db = require('./data/db.js');
+const express = require('express');
+const server = express();
+const port = 3000;
+
+server.use(express.json())
+
+server.listen(port, () => {
+    console.log('server says heeyy!!!')
+})
