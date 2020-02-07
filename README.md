@@ -40,13 +40,67 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Express is a Node.js module like any other module. Express is a web application framework that sits on top of the Node.js web server (http server module). It’s like React, for your backend.
+
+Express’ middleware stack is basically an array of functions. Think of middleware as array of functions that get executed in the order they are introduced into the server code. We can use Express Middleware to add features to Express. It is the biggest part of Express, most of the code we write, including route handlers, is middleware under the hood. Express middleware is compatible with connect middleware. Connect is a web application framework for Node.js that only provides the middleware layer. Since Connect has been around for longer, it has a rich ecosystem of modules and we can take advantage of that. If you can’t find an Express Middleware package with the functionality you want, try searching for a Connect Middleware module instead.
+
+Routing is a way to select which request handler function is executed. Using routing we can map incoming requests to the appropriate request handler based on the URL and HTTP Method used.
+Convenience Helpers that make writing web apps and API servers easier.
+
+Express sits on top of the raw http server module provided by Node.js and adds extra functionality, like routing and middleware support, and a simpler API.
+
 - [ ] Describe Middleware?
+
+An intermediary between the client and the server that can support asynchronous requests to improve ux. We can think of middleware as array of functions that get executed in the order they are introduced into the server code. Tasks like authentication and logging are commonly handled by middleware. Another benefit of Middleware is that it provides an easy way to add modularity to our code. There are three types of middleware, built-in, third party and custom.
 
 - [ ] Describe a Resource?
 
+Routing makes building RESTful Web APIs a breeze. We can have a single URL per resource and execute different code based on the HTTP Method/Verb used.
+A resource is an object with a type, associated data, relationships to other resources, and a set of methods that operate on it. It is similar to an object instance in an object-oriented programming language, with the important difference that only a few standard methods are defined for the resource (corresponding to the standard HTTP GET, POST, PUT and DELETE methods), while an object instance typically has many methods.
+
+The term endpoint is focused on the URL that is used to make a request.
+
+The term resource is focused on the data set that is returned by a request.
+ 
+A resource refers to one or more nouns being served, represented in namespaced fashion, because it is easy for humans to comprehend:
+
+/api/users/johnny         # Look up johnny from a users collection.
+/v2/books/1234            # Get book with ID 1234 in API v2 schema.
+
+All of the above could be considered service endpoints, but only the bottom group would be considered resources, RESTfully speaking. The top group is not expressive regarding the content it provides.
+
+A REST request is like a sentence composed of nouns (resources) and verbs (HTTP methods):
+
+GET (method) the user named johnny (resource).
+
+DELETE (method) the book with id 1234 (resource).
+
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+REST APIs use the Status-Line part of an HTTP response message..
+RFC 2616 defines the Status-Line syntax as shown below:
+ 
+Status-Line = HTTP-Version SP Status-Code SP Reason-Phrase CRLF
+ 
+A great amount of applications are using Restful APIs that are based on the HTTP protocol for connecting their clients. In all the calls, the server and the endpoint at the client both return a call status to the client which can be in the form of:
+ 
+1xx: Informational - Communicates transfer protocol-level information
+2xx: Success -Indicates that the client’s request was accepted successfully.
+3xx: Redirection - Indicates that the client must take some additional action in order to complete their request.
+4xx: Client Error - This category of error status codes points the finger at clients.
+5xx: Server Error - The server takes responsibility for these error status codes.
+
+
 - [ ] How can we partition our application into sub-applications?
+
+Routers are used for Application Modularity. Express Routers are a way to split an application into sub-applications to make it more modular and easier to maintain and reason about.
+
+Applications can be broken up into routers. We could have a router to serve our SPA and another router for our API. Each router can have its own middleware and routing. This combination provides improved functionality.
+
+An Express Router behaves like a mini Express application. It can have it’s own Routing and Middleware, but it needs to exist inside of an Express application. Think of routers as organizing Express applications because you write separate pieces that can later be composed together.
+Also, note that it is possible to have a central router that represents our API and have that router import the routes. This logic cleans up our main server file even more. Let’s see a quick example of that.
+
 
 ## Minimum Viable Product
 

@@ -42,6 +42,7 @@ function insert(project) {
 }
 
 function update(id, changes) {
+    console.log(changes)
     return db("projects")
         .where("id", id)
         .update(changes)
